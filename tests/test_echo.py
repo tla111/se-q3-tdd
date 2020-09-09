@@ -7,7 +7,7 @@ Students MUST EDIT this module, to add more tests to run
 against the 'echo.py' program.
 """
 
-__author__ = "???"
+__author__ = "Timothy La (tla111)"
 
 import sys
 import importlib
@@ -69,7 +69,8 @@ class TestEcho(unittest.TestCase):
     # - If you enable one option as true, are the rest false?
     #
     def test_parser_namespace(self):
-        # your code here
+        # self.assertAlmostEqual()
+        # -l = lower
         self.fail()  # replace me
 
     def test_echo(self):
@@ -84,7 +85,7 @@ class TestEcho(unittest.TestCase):
         self.assertEqual(
             output[0], args[0],
             "The program is not performing simple echo"
-            )
+        )
 
     def test_lower_short(self):
         """Check if short option '-l' performs lowercasing"""
@@ -122,24 +123,25 @@ class TestEcho(unittest.TestCase):
         self.fail()  # replace me
 
     def test_help_message(self):
-        # your code here
-        self.fail()  # replace me
+        # from string assessment
+        result = subprocess.run(['flake8', self.module.__file__])
+        self.assertEqual(result.returncode, 0)
 
     #
     # Students: add a flake8 test here.
     # You may borrow some test code from previous assignments!
     #
     def test_flake8(self):
-        # your code here
-        self.fail()  # replace me
+        # from string assessment
+        result = subprocess.run(['flake8', self.module.__file__])
+        self.assertEqual(result.returncode, 0)
 
     #
     # Students: add an __author__ test here.
     # You may borrow some test code from previous assignments!
     #
     def test_author(self):
-        # your code here
-        self.fail()  # replace me
+        self.assertEqual(self.type() == "string")
 
 
 if __name__ == '__main__':
