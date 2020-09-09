@@ -69,8 +69,7 @@ class TestEcho(unittest.TestCase):
     # - If you enable one option as true, are the rest false?
     #
     def test_parser_namespace(self):
-        # self.assertAlmostEqual()
-        # -l = lower
+
         self.fail()  # replace me
 
     def test_echo(self):
@@ -103,8 +102,9 @@ class TestEcho(unittest.TestCase):
         self.fail()  # replace me
 
     def test_upper_short(self):
-        # your code here
-        self.fail()  # replace me
+        args = ["-u", "hello world"]
+        output = run_capture(self.module.__file__, args)
+        self.assertEqual(output[0], "HELLO WORLD")
 
     def test_upper_long(self):
         # your code here
@@ -141,7 +141,7 @@ class TestEcho(unittest.TestCase):
     # You may borrow some test code from previous assignments!
     #
     def test_author(self):
-        self.assertEqual(self.type() == "string")
+        self.assertEqual(type(__author__) == string)
 
 
 if __name__ == '__main__':
