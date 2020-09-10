@@ -69,8 +69,8 @@ class TestEcho(unittest.TestCase):
     # - If you enable one option as true, are the rest false?
     #
     def test_parser_namespace(self):
-
-        self.fail()  # replace me
+        args = []
+        self.assertEqual()
 
     def test_echo(self):
         """Check if main() function prints anything at all"""
@@ -98,8 +98,9 @@ class TestEcho(unittest.TestCase):
     #
 
     def test_lower_long(self):
-        # your code here
-        self.fail()  # replace me
+        args = ["--lower", "HELLO WORLD"]
+        output = run_capture(self.module.__file__, args)
+        self.assertEqual(output[0], "hello world")
 
     def test_upper_short(self):
         args = ["-u", "hello world"]
@@ -107,20 +108,24 @@ class TestEcho(unittest.TestCase):
         self.assertEqual(output[0], "HELLO WORLD")
 
     def test_upper_long(self):
-        # your code here
-        self.fail()  # replace me
+        args = ["--upper", "hello world"]
+        output = run_capture(self.module.__file__, args)
+        self.assertEqual(output[0], "HELLO WORLD")
 
     def test_title_short(self):
-        # your code here
-        self.fail()  # replace me
+        args = ["-t", "hello world"]
+        output = run_capture(self.module.__file__, args)
+        self.assertEqual(output[0], "Hello World")
 
     def test_title_long(self):
-        # your code here
-        self.fail()  # replace me
+        args = ["--title", "hello world"]
+        output = run_capture(self.module.__file__, args)
+        self.assertEqual(output[0], "Hello World")
 
     def test_multiple_options(self):
-        # your code here
-        self.fail()  # replace me
+        args = ["-ult", "hello world"]
+        output = run_capture(self.module.__file__, args)
+        self.assertEqual(output[0], "Hello World")
 
     def test_help_message(self):
         # from string assessment
@@ -141,7 +146,7 @@ class TestEcho(unittest.TestCase):
     # You may borrow some test code from previous assignments!
     #
     def test_author(self):
-        self.assertEqual(type(__author__) == string)
+        self.assertEqual(type(__author__), str)
 
 
 if __name__ == '__main__':
