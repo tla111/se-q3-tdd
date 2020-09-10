@@ -69,8 +69,12 @@ class TestEcho(unittest.TestCase):
     # - If you enable one option as true, are the rest false?
     #
     def test_parser_namespace(self):
-        args = []
-        self.assertEqual()
+        parser = self.module.create_parser()
+        ns = parser.parse_args(["-l", "Hello"])
+        self.assertTrue(ns.lower)
+        self.assertFalse(ns.upper)
+        self.assertFalse(ns.title)
+        self.assertEqual(ns.text, "Hello")
 
     def test_echo(self):
         """Check if main() function prints anything at all"""
