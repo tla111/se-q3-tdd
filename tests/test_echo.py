@@ -49,14 +49,14 @@ class TestEcho(unittest.TestCase):
     """Main test fixture for 'echo' module"""
     @classmethod
     def setUpClass(cls):
-        """Performs module import and suite setup at test-runtime"""
+        # """Performs module import and suite setup at test-runtime"""
         # check for python3
         cls.assertGreaterEqual(cls, sys.version_info[0], 3)
         # This will import the module to be tested (the student's echo.py)
         cls.module = importlib.import_module(PKG_NAME)
 
     def test_parser(self):
-        """Check if create_parser() returns a parser object"""
+        # """Check if create_parser() returns a parser object"""
         result = self.module.create_parser()
         self.assertIsInstance(
             result, argparse.ArgumentParser,
@@ -69,6 +69,10 @@ class TestEcho(unittest.TestCase):
     # - If you enable one option as true, are the rest false?
     #
     def test_parser_namespace(self):
+        # Test to verify if the parser is doing its job
+        #   converting an argument list into a namespace
+        # A namespace is the return value that you get when
+        #   you call parser.parse_args()
         parser = self.module.create_parser()
         ns = parser.parse_args(["-l", "Hello"])
         self.assertTrue(ns.lower)
@@ -77,12 +81,12 @@ class TestEcho(unittest.TestCase):
         self.assertEqual(ns.text, "Hello")
 
     def test_echo(self):
-        """Check if main() function prints anything at all"""
+        # """Check if main() function prints anything at all"""
         module_to_test = self.module.__file__
         run_capture(module_to_test)
 
     def test_simple_echo(self):
-        """Check if main actually echoes an input string"""
+        # """Check if main actually echoes an input string"""
         args = ['Was soll die ganze Aufregung?']
         output = run_capture(self.module.__file__, args)
         self.assertEqual(
@@ -91,7 +95,7 @@ class TestEcho(unittest.TestCase):
         )
 
     def test_lower_short(self):
-        """Check if short option '-l' performs lowercasing"""
+        # """Check if short option '-l' performs lowercasing"""
         args = ["-l", "HELLO WORLD"]
         output = run_capture(self.module.__file__, args)
         self.assertEqual(output[0], "hello world")
@@ -102,37 +106,43 @@ class TestEcho(unittest.TestCase):
     #
 
     def test_lower_long(self):
+        # """Check if short option '--lower' performs lowercasing"""
         args = ["--lower", "HELLO WORLD"]
         output = run_capture(self.module.__file__, args)
         self.assertEqual(output[0], "hello world")
 
     def test_upper_short(self):
+        # """Check if upper option '-u' performs uppercasing"""
         args = ["-u", "hello world"]
         output = run_capture(self.module.__file__, args)
         self.assertEqual(output[0], "HELLO WORLD")
 
     def test_upper_long(self):
+        # """Check if upper option '--upper' performs uppercasing"""
         args = ["--upper", "hello world"]
         output = run_capture(self.module.__file__, args)
         self.assertEqual(output[0], "HELLO WORLD")
 
     def test_title_short(self):
+        # """Check if title option '-t' performs capitalizing"""
         args = ["-t", "hello world"]
         output = run_capture(self.module.__file__, args)
         self.assertEqual(output[0], "Hello World")
 
     def test_title_long(self):
+        # """Check if title option '--title' performs capitalizing"""
         args = ["--title", "hello world"]
         output = run_capture(self.module.__file__, args)
         self.assertEqual(output[0], "Hello World")
 
     def test_multiple_options(self):
+        # """Check when all option flags are provided"""
         args = ["-ult", "hello world"]
         output = run_capture(self.module.__file__, args)
         self.assertEqual(output[0], "Hello World")
 
     def test_help_message(self):
-        # from string assessment
+        # """Checking for PEP8/flake8 compliance"""
         result = subprocess.run(['flake8', self.module.__file__])
         self.assertEqual(result.returncode, 0)
 
@@ -141,7 +151,7 @@ class TestEcho(unittest.TestCase):
     # You may borrow some test code from previous assignments!
     #
     def test_flake8(self):
-        # from string assessment
+        # """Checking for PEP8/flake8 compliance"""
         result = subprocess.run(['flake8', self.module.__file__])
         self.assertEqual(result.returncode, 0)
 
@@ -150,6 +160,8 @@ class TestEcho(unittest.TestCase):
     # You may borrow some test code from previous assignments!
     #
     def test_author(self):
+        # Test to see if the type of __author__
+        #   is a string
         self.assertEqual(type(__author__), str)
 
 

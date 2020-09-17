@@ -9,14 +9,17 @@ __author__ = "Timothy La (tla111)"
 
 
 def text_upper(text):
+    # Coverts text to uppercase
     return text.upper()
 
 
 def text_lower(text):
+    # Coverts text to lowercase
     return text.lower()
 
 
 def text_title(text):
+    # Capitalize first letter of word
     return text.title()
 
 
@@ -43,10 +46,19 @@ def main(args):
         sys.exit(1)
 
     text = ns.text
+    # If the namespace is -u
+    #   convert text to uppercase
+    # Ex: python echo.py -u 'hello'
     if ns.upper:
         text = text_upper(text)
+    # If the namespace is -l
+    #   convert text to uppercase
+    # Ex: python echo.py -l 'hello'
     if ns.lower:
         text = text_lower(text)
+    # If the namespace is -t
+    #   convert text to uppercase
+    # Ex: python echo.py -t 'hello'
     if ns.title:
         text = text_title(text)
     print(text)
